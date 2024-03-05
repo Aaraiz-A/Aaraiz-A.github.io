@@ -5,7 +5,7 @@ let score1;
 
 
 function setup() {
-  createCanvas(1000, 500);
+  createCanvas(400, 400);
   radius = 100;
   x = random(width - radius);
   y = random(height - radius);
