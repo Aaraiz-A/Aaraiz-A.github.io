@@ -5,7 +5,7 @@ let score1;
 
 
 function setup() {
-  createCanvas(1000, 500);
+  createCanvas(windowWidth, windowHeight);
   noCursor();
   radius = 100;
   x = random(width - radius);
@@ -20,6 +20,7 @@ function draw() {
   circle2();
   circle3();
   circle4();
+  mouseClicked();
   crosshairs();
   // targetsscore();
   // maketargetmove();
@@ -51,10 +52,19 @@ function circle4() {
 }
 
 function mouseClicked() {
-  if (circle(x, y, radius)) {
+  if (mouseX <= circle1() && mouseX >= circle2() && (mouseY <= circle1() && mouseY >= circle2())) {
     score1 = score1 + 1;
   }
-
+  else if (mouseX < circle2() && mouseX >= circle3() && (mouseY < circle2() && mouseY >= circle3())) {
+    score1 = score1 + 2;
+  }
+  else if (mouseX < circle3() && mouseX >= circle4() && (mouseY < circle3() && mouseY >= circle4())) {
+    score1 = score1 + 3;
+  }
+  else if (mouseX < circle4() && mouseY < circle4()) {
+    score1 = score1 + 5;
+  }
+  
 }
 
 // function maketargetmove() {
@@ -66,7 +76,7 @@ function mouseClicked() {
 
 function scoretext() {
   fill("black");
-  text("Score:" + score1, width - 50, height - 475);
+  text("Score: " + score1, width - 60, height - (height - height/20));
 }
 
 function crosshairs() {
