@@ -1,81 +1,93 @@
 let x;
 let y;
-let radius;
+let diameter;
 let score1;
+let x1;
+let y1;
+let state;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  radius = 100;
-  x = random(width - radius);
-  y = random(height - radius);
+  diameter = 100;
+  x = random(width - diameter);
+  y = random(height - diameter);
   score1 = 0;
+  state = "start game";
 }
 
 function draw() {
-  background(220);
-  scoretext();
-  circle1();
-  circle2();
-  circle3();
-  circle4();
-  mouseClicked();
-  crosshairs();
-  // targetsscore();
-  // maketargetmove();
-  // mouseWheel();
+  if (state === "start game") {
+    background("black");
+    start();
+  }
+  else if (state === "challenge") {
+    background(220);
+    scoretext();
+    circle1();
+    circle2();
+    circle3();
+    circle4();
+    crosshairs();
+  }
+
 }
 
 function circle1() {
   stroke("black");
   fill("red");
-  circle(x, y, radius);
+  circle(x, y, diameter);
 }
 
 function circle2() {
   noStroke();
   fill("white");
-  circle(x, y, radius/1.3);
+  circle(x, y, diameter/1.3);
 }
 
 function circle3() {
   noStroke();
   fill("red");
-  circle(x, y, radius/2);
+  circle(x, y, diameter/2);
 }
 
 function circle4() {
   noStroke();
   fill("white");
-  circle(x, y, radius/4);
+  circle(x, y, diameter/4);
 }
 
 function mouseClicked() {
-  if (mouseX <= circle1() && mouseX >= circle2() && (mouseY <= circle1() && mouseY >= circle2())) {
+  if (dist(mouseX, mouseY, x, y) <= 50 && dist(mouseX, mouseY, x, y) > 38.5) {
     score1 = score1 + 1;
+    x = random(width - diameter);
+    y = random(height - diameter);
   }
-  else if (mouseX < circle2() && mouseX >= circle3() && (mouseY < circle2() && mouseY >= circle3())) {
+  if (dist(mouseX, mouseY, x, y) <= 38.5 && dist(mouseX, mouseY, x, y) > 25) {
     score1 = score1 + 2;
+    x = random(width - diameter);
+    y = random(height - diameter);
   }
-  else if (mouseX < circle3() && mouseX >= circle4() && (mouseY < circle3() && mouseY >= circle4())) {
+  if (dist(mouseX, mouseY, x, y,) <= 25 && dist(mouseX, mouseY, x, y) > 12.5) {
     score1 = score1 + 3;
+    x = random(width - diameter);
+    y = random(height - diameter);
   }
-  else if (mouseX < circle4() && mouseY < circle4()) {
+  if (dist(mouseX, mouseY, x, y) <= 12.5) {
     score1 = score1 + 5;
+    x = random(width - diameter);
+    y = random(height - diameter);
   }
-  
-}
+  if (state === "start game") {
+    state = "challenge";
+  }
 
-// function maketargetmove() {
-//   if (mouseClicked(circle1 || circle2 || circle3 || circle4)) {
-//     x = random(width - radius);
-//     y = random(height - radius);
-//   }
-// }
+}
 
 function scoretext() {
   fill("black");
+  textSize(15);
   text("Score: " + score1, width - 60, height - (height - height/20));
 }
 
@@ -87,7 +99,15 @@ function crosshairs() {
   rect(mouseX - 7,mouseY, 4, 1);
 }
 
-// function mouseWheel(event) {
-//   print(event.delta)
-//   radius += event.delta;
-// }
+function keyPressed() {
+  if (key === "r") {
+    score1 = 0;
+  }
+}
+
+function start() {
+  fill("white");
+  textSize(42);
+  textAlign(CENTER, CENTER);
+  text("Click The Mouse To Start The Game!", width/2, height/2);
+}
