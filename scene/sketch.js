@@ -2,9 +2,8 @@ let x;
 let y;
 let diameter;
 let score1;
-let x1;
-let y1;
 let state;
+let timelimit;
 
 
 function setup() {
@@ -15,6 +14,7 @@ function setup() {
   y = random(height - diameter);
   score1 = 0;
   state = "start game";
+  timelimit = 10;
 }
 
 function draw() {
@@ -110,4 +110,11 @@ function start() {
   textSize(42);
   textAlign(CENTER, CENTER);
   text("Click The Mouse To Start The Game!", width/2, height/2);
+}
+
+function timestuff() {
+  // if (state === "challenge") {
+
+  // }
+
 }
