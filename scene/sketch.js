@@ -13,8 +13,8 @@ function setup() {
   x = random(width - diameter);
   y = random(height - diameter);
   score1 = 0;
-  state = "start game";
   timelimit = 10;
+  state = "start game";
 }
 
 function draw() {
@@ -24,14 +24,19 @@ function draw() {
   }
   else if (state === "challenge") {
     background(220);
+    timestuff();
     scoretext();
+    timetext();
     circle1();
     circle2();
     circle3();
     circle4();
     crosshairs();
   }
-
+  else if (state === "game over") {
+    background("black");
+    gameover();
+  }
 }
 
 function circle1() {
@@ -82,13 +87,18 @@ function mouseClicked() {
   if (state === "start game") {
     state = "challenge";
   }
-
 }
 
 function scoretext() {
   fill("black");
   textSize(15);
   text("Score: " + score1, width - 60, height - (height - height/20));
+}
+
+function timetext() {
+  fill("black");
+  textSize(15);
+  text("Time Left: " + timelimit, width - 60, height - (height - height/15));
 }
 
 function crosshairs() {
@@ -113,8 +123,17 @@ function start() {
 }
 
 function timestuff() {
-  // if (state === "challenge") {
+  if (state === "challenge") {
+    timelimit -= 1;
+  }
+  if (timelimit === 0) {
+    state = "game over";
+  }
+}
 
-  // }
-
+function gameover() {
+  fill("white");
+  textSize(42);
+  textAlign(CENTER, CENTER);
+  text("Time is over! Your score was " + score1, width/2, height/2);
 }
