@@ -1,3 +1,10 @@
+// Aaraiz Afridi
+// Interactive Scene Project
+// Computer Science 30
+
+
+
+// Defining Variables at the top
 let x;
 let y;
 let diameter;
@@ -7,7 +14,7 @@ let timer;
 let state2;
 
 
-
+//setting up the code, assigning values
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
