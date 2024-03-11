@@ -6,6 +6,7 @@ let state;
 let timelimit;
 
 
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
@@ -13,7 +14,7 @@ function setup() {
   x = random(width - diameter);
   y = random(height - diameter);
   score1 = 0;
-  timelimit = 10;
+  timelimit = millis();
   state = "start game";
 }
 
@@ -124,9 +125,9 @@ function start() {
 
 function timestuff() {
   if (state === "challenge") {
-    timelimit -= 1;
+    millis() - timelimit;
   }
-  if (timelimit === 0) {
+  if (millis() === 10000) {
     state = "game over";
   }
 }
@@ -136,4 +137,8 @@ function gameover() {
   textSize(42);
   textAlign(CENTER, CENTER);
   text("Time is over! Your score was " + score1, width/2, height/2);
+}
+
+function mouseWheel(event) {
+  diameter += event.delta;
 }
