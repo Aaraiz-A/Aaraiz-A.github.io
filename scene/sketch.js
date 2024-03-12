@@ -1,7 +1,8 @@
 // Aaraiz Afridi
 // Interactive Scene Project
 // Computer Science 30
-
+// Extra for experts: I made the diameter relative to the mouse wheel. Meaning players can now control the size of their circle by moving their mouse wheel
+// you will have 10 seconds to complete the game
 
 
 // Defining Variables at the top
@@ -26,6 +27,7 @@ function setup() {
   state2 = "on";
 }
 
+// compilation of all functions
 function draw() {
   console.log(state ,  state2);
   // if (state === "challenge" && state2 === "on") {
@@ -38,7 +40,6 @@ function draw() {
     background(220);
     timecountdown();
     scoretext();
-    timetext();
     circle1();
     circle2();
     circle3();
@@ -51,6 +52,7 @@ function draw() {
   }
 }
 
+// drawing the target, and how the target is made up of different circles
 function circle1() {
   stroke("black");
   fill("red");
@@ -75,6 +77,7 @@ function circle4() {
   circle(x, y, diameter/4);
 }
 
+// depending on where the target is clicked, you gain a certain amount of points
 function mouseClicked() {
   if (dist(mouseX, mouseY, x, y) <= 50 && dist(mouseX, mouseY, x, y) > 38.5) {
     score1 = score1 + 1;
@@ -101,18 +104,14 @@ function mouseClicked() {
   }
 }
 
+// displays the score
 function scoretext() {
   fill("black");
   textSize(15);
   text("Score: " + score1, width - 60, height - (height - height/20));
 }
 
-function timetext() {
-  fill("black");
-  textSize(15);
-  text("Time: " + timer, width - 60, height - (height - height/15));
-}
-
+// displays cross hairs so u can aim properly
 function crosshairs() {
   fill(0);
   rect(mouseX, mouseY + 4, 1, 4);
@@ -121,12 +120,14 @@ function crosshairs() {
   rect(mouseX - 7,mouseY, 4, 1);
 }
 
+// if you press r, your score resets (if you want extra challenge or want to prank your friend)
 function keyPressed() {
   if (key === "r") {
     score1 = 0;
   }
 }
 
+// start screen
 function start() {
   fill("white");
   textSize(42);
@@ -134,6 +135,7 @@ function start() {
   text("Click The Mouse To Start The Game!", width/2, height/2);
 }
 
+// a timer in the game, makes game more competitive
 function timecountdown() {
   if (state === "challenge" && state2 === "on") {
     timer = millis();
@@ -144,6 +146,7 @@ function timecountdown() {
   }
 }
 
+// game over screen
 function gameover() {
   fill("white");
   textSize(42);
@@ -151,6 +154,7 @@ function gameover() {
   text("Time is over! Your score was " + score1, width/2, height/2);
 }
 
+// diameter of target changes depending on how you scroll
 function mouseWheel(event) {
   diameter += event.delta;
 }
