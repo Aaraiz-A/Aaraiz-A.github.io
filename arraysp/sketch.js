@@ -4,26 +4,23 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-
-
-// ur wong buddy
-let x;
-let y;
-let diameter;
-
+let theBall = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  x = windowWidth/2;
-  y = windowHeight/2;
-  diameter = 100;
 }
 
 function draw() {
   background(220);
-  theCircle();
+  maincharactercharacteristics();
 }
 
-function theCircle() {
-  circle(x, y, diameter);
+function maincharactercharacteristics() {
+  let ball = {
+    x: width/2,
+    y: height,
+    diameter: 50
+  };
+
+  theBall.push(ball);
 }
