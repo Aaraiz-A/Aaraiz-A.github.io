@@ -7,7 +7,9 @@
 - [Arrays and Objects](circles)
 - [Generative Art](art)
 - [Generative Terrain](terrain)
+- [Bubble Movement](bubble)
 
 # Projects
 - [Interactive Scene](scene)
 - [Arrays Projet](arraysp)
+

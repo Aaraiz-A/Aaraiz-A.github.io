@@ -8,13 +8,14 @@ let theBall = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  maincharactercharacteristics();
 }
 
 function draw() {
-  background(220);
-  maincharactercharacteristics();
+  background(255);
   displaymaincharacter();
   maincharactermoves();
+
 }
 
 function maincharactercharacteristics() {
@@ -37,16 +38,16 @@ function displaymaincharacter() {
 function maincharactermoves() {
   for (let ball of theBall) {
     if (keyIsDown(87)) { //w
-      ball.y -= ball.dy;
-    }
-    if (keyIsDown(83)) { //s
       ball.y += ball.dy;
     }
+    if (keyIsDown(83)) { //s
+      ball.y -= ball.dy;
+    }
     if (keyIsDown(68)) { //d
-      ball.x += ball.dx;
+      ball.x -= ball.dx;
     }
     if (keyIsDown(65)) { //a
-      ball.x -= ball.dx;
+      ball.x += ball.dx;
     }
   }
 }
