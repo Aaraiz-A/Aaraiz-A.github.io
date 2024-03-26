@@ -8,14 +8,12 @@ let theBall = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  maincharactercharacteristics();
 }
 
 function draw() {
-  background(255);
+  maincharactercharacteristics();
   displaymaincharacter();
-  maincharactermoves();
-
+  keyPressed();
 }
 
 function maincharactercharacteristics() {
@@ -35,18 +33,35 @@ function displaymaincharacter() {
   }
 }
 
-function maincharactermoves() {
+// function maincharactermoves() {
+//   for (let ball of theBall) {
+//     if (keyPressed(87)) { //w
+//       ball.y += noise(theBall.dy) * height;
+//     }
+//     if (keyPressed(83)) { //s
+//       ball.y -= ball.dy;
+//     }
+//     if (keyIsDown(68)) { //d
+//       ball.x -= ball.dx;
+//     }
+//     if (keyIsDown(65)) { //a
+//       ball.x += ball.dx;
+//     }
+//   }
+// }
+
+function keyPressed() {
   for (let ball of theBall) {
-    if (keyIsDown(87)) { //w
+    if (key === "w") { //w
       ball.y += ball.dy;
     }
-    if (keyIsDown(83)) { //s
+    if (key === "s") { //s
       ball.y -= ball.dy;
     }
-    if (keyIsDown(68)) { //d
+    if (key === "d") { //d
       ball.x -= ball.dx;
     }
-    if (keyIsDown(65)) { //a
+    if (key === "a") { //a
       ball.x += ball.dx;
     }
   }
