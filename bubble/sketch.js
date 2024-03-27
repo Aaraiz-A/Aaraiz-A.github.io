@@ -62,27 +62,27 @@ function moveBubblesWithNoise() {
 
 }
 
-function moveBubblesRandomly() {
-  for (let bubble of theBubbles) {
-    let choice = random(100);
-    if (choice < 25) {
-      //move up
-      bubble.y -= bubble.speed;
-    }
-    else if (choice < 50) {
-      //move down
-      bubble.y += bubble.speed;
-    }
-    else if (choice < 75) {
-      //move right
-      bubble.x += bubble.speed;
-    }
-    else {
-      //move left
-      bubble.x -= bubble.speed;
-    }
-  }
-}
+// function moveBubblesRandomly() {
+//   for (let bubble of theBubbles) {
+//     let choice = random(100);
+//     if (choice < 25) {
+//       //move up
+//       bubble.y -= bubble.speed;
+//     }
+//     else if (choice < 50) {
+//       //move down
+//       bubble.y += bubble.speed;
+//     }
+//     else if (choice < 75) {
+//       //move right
+//       bubble.x += bubble.speed;
+//     }
+//     else {
+//       //move left
+//       bubble.x -= bubble.speed;
+//     }
+//   }
+// }
 
 function displayBubbles() {
   for (let bubble of theBubbles) {
