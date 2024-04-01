@@ -6,6 +6,9 @@
 
 let theBall = [];
 const ENEMY_DIAMETER = 25;
+let enemyCount = 0;
+let enemySpawnDelay = 1000;
+let lastEnemySpawn = 0;
 
 
 function setup() {
@@ -14,8 +17,6 @@ function setup() {
   enemycharacteristics();
 }
 
-
-
 function draw() {
   background(0, 150, 255);
   displaymaincharacter();
@@ -23,7 +24,8 @@ function draw() {
   bordercontrol();
   displayenemy();
   moveenemy();
-  enemybouncesoffwall();
+  enemybouncesoffwallandotherthings();
+  displayscore();
 }
 
 function maincharactercharacteristics() {
@@ -80,15 +82,20 @@ function bordercontrol() {
 }
 
 function enemycharacteristics() {
-  let enemy = {
-    x2: random(width - ENEMY_DIAMETER),
-    y2: random(height - ENEMY_DIAMETER),
-    diameter2: ENEMY_DIAMETER,
-    dx2: 5,
-    dy2: 5,
-    speedofenemy: 0,
-  };
-  theBall.push(enemy);
+  if (enemyCount < 15 && millis() - lastEnemySpawn > enemySpawnDelay) {
+    let enemy = {
+      x2: random(width - ENEMY_DIAMETER),
+      y2: random(height - ENEMY_DIAMETER),
+      diameter2: ENEMY_DIAMETER,
+      dx2: 5,
+      dy2: 5,
+      speedofenemy: 0,
+      maxenemyspeed: 25,
+    };
+    theBall.push(enemy);
+    enemyCount++;
+    lastEnemySpawn - millis();
+  }
 }
 
 function displayenemy() {
@@ -104,84 +111,32 @@ function moveenemy() {
   }
 }
 
-function enemybouncesoffwall() {
+function enemybouncesoffwallandotherthings() {
   for (let enemy of theBall) {
     if (enemy.x2 + enemy.diameter2/2 >= width || enemy.x2 - enemy.diameter2/2 <= 0) {
-      enemy.dx2 = enemy.dx2 * -1.2;
       enemy.speedofenemy = enemy.speedofenemy + 1;
+      if (enemy.speedofenemy < enemy.maxenemyspeed) {
+        enemy.dx2 = enemy.dx2 * -1.05;
+      }
+      else {
+        enemy.dx2 = enemy.dx2 * -1;
+      }
     }
     if (enemy.y2 + enemy.diameter2/2 >= height || enemy.y2 - enemy.diameter2/2 <= 0) {
-      enemy.dy2 = enemy.dy2 * -1.2;
       enemy.speedofenemy = enemy.speedofenemy + 1;
+      if (enemy.speedofenemy < enemy.maxenemyspeed) {
+        enemy.dy2 = enemy.dy2 * -1.05;
+      }
+      else {
+        enemy.dy2 = enemy.dy2 * -1;
+      }
     }
-
   }
 }
 
+function displayscore() {
+  for (let enemy of theBall) {
+    text(enemy.speedofenemy, width/2, height/2) 
+  }
+}
 
-// let x;
-// let y;
-// let dx;
-// let dy;
-// let radius = 30;
-// let r = 0;
-// let g = 255;
-// let b = 0;
-
-// function setup() {
-//   createCanvas(300, 300);
-//   x = width / 2;
-//   y = height / 2;
-//   dx = random(-5, 5);
-//   dy = random(-5, 5);
-//   changeCircleColour();
-//   noStroke();
-// }
-
-// function draw() {
-//   background(220);
-
-//   drawCircle();
-//   moveCircle();
-//   bounceOffWall();
-// }
-
-// function keyTyped() {
-//   if (key === " ") {
-//     dx = random(-5, 5);
-//     dy = random(-5, 5);
-//   }
-//   if (key === "c") {
-//     changeCircleColour ();
-//   }
-// }
-
-// function drawCircle() {
-//   //display circle
-//   fill(r, g, b);
-//   circle(x, y, radius * 2);
-// }
-
-// function moveCircle() {
-//   //move circle
-//   x += dx;
-//   y += dy;
-// }
-
-// function bounceOffWall() {
-//   //bounce if needed
-//   if (x + radius >= width || x - radius <= 0) {
-//     dx = -1 * dx;
-//     changeCircleColour();
-//   }
-//   if (y + radius >= height || y - radius <= 0) {
-//     dy = -1 * dy;
-//     changeCircleColour();
-//   }
-// }
-
-// function changeCircleColour() {
-//   r = random(255);
-//   g = random(255);
-//   b = random(255);
-// }
