@@ -5,6 +5,7 @@
 // - describe what you did to take this project "above and beyond"
 
 let theBall = [];
+let player;
 const ENEMY_DIAMETER = 25;
 let enemyCount = 0;
 let enemySpawnDelay = 5000;
@@ -28,8 +29,7 @@ function draw() {
     displaytime();
     displaylives();
     displaymaincharacter();
-    maincharactermoves();
-    bordercontrol();
+    maincharactermovement();
     displayenemy();
     moveenemy();
     enemybouncesoffwallandotherthings();
@@ -46,55 +46,45 @@ function draw() {
 }
 
 function maincharactercharacteristics() {
-  let ball = {
+  player = {
     x: width/2,
     y: height/2,
     diameter: 50,
     dx: 5,
     dy: 5,
   };
-  theBall.push(ball);
 }
 
 function displaymaincharacter() {
-  for (let ball of theBall) {
-    fill(ball.r, ball.g, ball.b);
-    circle(ball.x, ball.y  - ball.diameter/2, ball.diameter);
-  }
+  circle(player.x, player.y  - player.diameter/2, player.diameter);
 }
 
-function maincharactermoves() {
-  for (let ball of theBall) {
-    if (keyIsDown(87)) { //w
-      ball.y -= ball.dy;
-    }
-    if (keyIsDown(83)) { //s
-      ball.y += ball.dy;
-    }
-    if (keyIsDown(68)) { //d
-      ball.x += ball.dx;
-    }
-    if (keyIsDown(65)) { //a
-      ball.x -= ball.dx;
-    }
+function maincharactermovement() {
+  if (keyIsDown(87)) { //w
+    player.y -= player.dy;
   }
-}
+  if (keyIsDown(83)) { //s
+    player.y += player.dy;
+  }
+  if (keyIsDown(68)) { //d
+    player.x += player.dx;
+  }
+  if (keyIsDown(65)) { //a
+    player.x -= player.dx;
+  }
 
-function bordercontrol() {
-  for (let ball of theBall) {
-    if (ball.x < 0) {
-      ball.x = width;
-    }
-    else if (ball.x > width) {
-      ball.x = 0;
-    }
-  
-    if (ball.y < 0) {
-      ball.y = height;
-    }
-    else if (ball.y > height) {
-      ball.y = 0;
-    }
+  // border control
+  if (player.x < 0) {
+    player.x = width;
+  }
+  else if (player.x > width) {
+    player.x = 0;
+  }
+  if (player.y < 0) {
+    player.y = height;
+  }
+  else if (player.y > height) {
+    player.y = 0;
   }
 }
 
@@ -151,11 +141,11 @@ function enemybouncesoffwallandotherthings() {
 }
 
 function checkifitcollides() {
-  for (let ball of theBall) {
-    if (ball.diameter && ball.diameter2) {
-      let collision = dist(ball.x, ball.y, ball.diameter/2, ball.x2, ball.y2, ball.diameter/2) < (ball.diameter + ball.diameter2) / 2;
+  for (let enemy of theBall) {
+    if (enemy.diameter && player.diameter) {
+      let collision = dist(player.x, player.y, player.diameter/2, enemy.x2, enemy.y2, enemy.diameter/2) < (player.diameter + enemy.diameter2) / 2;
 
-      if (collision && ball.diameter < ball.diameter2) {
+      if (collision) {
         lives = lives - 1;
         if (lives === 0) {
           state = "Game Over";
@@ -189,3 +179,5 @@ function displaylives() {
   textSize(15);
   text("Lives Remaining: " + lives, width - width/1.005, height - height/1.10)
 }
+
+//CHECK
