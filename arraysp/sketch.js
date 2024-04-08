@@ -3,10 +3,10 @@
 
 // Additional notes:
 // awsd to control the character
-// I did not put a max speed for the player on purpose, because I want to encourage different playstyles
+// I did not put a max speed for the player on purpose because I want to encourage different playstyles
 
 // Extra for Experts:
-// I use functions that were not talked about before in class, such as frameRate() (I figured out how to round it to two decimal places), textFont(), const, 
+// I use functions that were not talked about before in class, such as frameRate() (I figured out how to round it to two decimal places), textFont(), const 
 // Also it took me some time to figure out how to add acceleration/physics to the main character
 
 // defining the global variables on top
@@ -27,7 +27,7 @@ function setup() {
   maincharactercharacteristics();
   enemycharacteristics();
   starttime = millis();
-  state = "Game is on"
+  state = "Game is on";
 }
 
 // every function is in the draw loop (nice and neat)
@@ -206,7 +206,7 @@ function displaytime() {
   fill("black");
   textSize(20);
   textFont("Courier New");
-  text("Time: " + score1 + " sec", width - width/1.005, height - height/1.05) 
+  text("Time: " + score1 + " sec", width - width/1.005, height - height/1.05);
 }
 
 // dictates the frequency of adding enemies
@@ -230,7 +230,7 @@ function displaylives() {
   fill("black");
   textSize(20);
   textFont("Courier New");
-  text("Lives Remaining: " + lives, width - width/1.005, height - height/1.10)
+  text("Lives Remaining: " + lives, width - width/1.005, height - height/1.10);
 }
 
 // displays the frame rate
@@ -239,5 +239,5 @@ function displayframerate() {
   fill("black");
   textSize(20);
   textFont("Courier New");
-  text("Frame Rate: " + fps.toFixed(2), width - width/1.005, height - height/1.15 )
+  text(fps.toFixed(2) + " FPS", width - width/1.005, height - height/1.15 );
 }
