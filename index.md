@@ -12,5 +12,6 @@
 
 # Projects
 - [Interactive Scene](scene)
-- [Arrays Projet](arraysp)
+- [Arrays Project](arraysp)
+- [2D Arrays Project](2darraysp)
 
