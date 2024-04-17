@@ -1,5 +1,5 @@
 // 2D Grid
-// Dan Schellenberg
+// Aaraiz 
 // Apr 9, 2024
 
 // if you are hard-coding a level, I'd use something like this
@@ -15,9 +15,14 @@
 
 let grid;
 let cellSize;
-const GRID_SIZE = 30;
+const GRID_SIZE = 40;
 let toggleStyle = "self";
 let isAutoPlayOn = false;
+let gosperGun;
+
+function preload() {
+  gosperGun = loadJSON("gosper.json");
+}
 
 function setup() {
   //make the canvas the largest square that you can...
@@ -65,7 +70,10 @@ function keyPressed() {
   if (key === "e") {
     grid = generateEmptyGrid(GRID_SIZE, GRID_SIZE);
   }
-
+  
+  if (key === "g") {
+    grid = gosperGun;
+  }
   if (key === "n") {
     toggleStyle = "neighbours";
   }
