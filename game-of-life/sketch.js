@@ -72,7 +72,7 @@ function keyPressed() {
   }
   
   if (key === "g") {
-    grid = gosperGun;
+    grid = gosperGun.gun;
   }
   if (key === "n") {
     toggleStyle = "neighbours";
