@@ -9,6 +9,8 @@ let cellSize;
 const GRID_SIZE = 10;
 const pcols = 4;
 const prows = 9;
+let startButtonCharacteristics;
+let startButtonTextCharacteristics;
 let state = "title screen";
 
 function setup() {
@@ -29,11 +31,15 @@ function setup() {
 
 function draw() {
   if (state === "title screen") {
-    background("yellow");
-    text("Periodic Table: Transition Metals");
+    background(0, 48, 73);
+    titleText();
+    startButton();
+    mousePressed();
   }
-  background(220);
-  displayGrid();
+  else if (state === "periodic table") {
+    background(220);
+    displayGrid();
+  }
 }
 
 // PERIODIC TABLE ELEMENTS
@@ -86,4 +92,54 @@ function generateEmptyGrid(cols, rows) {
     }
   }
   return emptyArray;
+}
+
+function titleText() {
+  textAlign(CENTER);
+  textFont("Trebuchet MS");
+  fill(253, 240, 213);
+  textSize(40);
+  text("EPIC Periodic Table: Transition Metals!", width/2, height/2);
+}
+
+function mousePressed() {
+  
+}
+
+function startButton() {
+  startButtonCharacteristics = {
+    x: width/2,
+    y: height/1.6,
+    wid: 250,
+    hei: 60,
+    r: 255,
+    g: 183,
+    b: 3,
+    text("Let's Go!", width/2, height/1.55);
+  }; 
+}
+
+function startButtonText() {
+  startButtonTextCharacteristics = {
+    r2: 253,
+    g2: 183,
+    b2: 3,
+    wid2: width/2,
+    hei2: height/1.55,
+  };
+}
+
+function displayStartButton() {
+  for (let sbc of startButtonCharacteristics) {
+    rectMode(CENTER);
+    noStroke();
+    fill(sbc.r, sbc.g, sbc.b);
+    rect(sbc.x, sbc.y, sbc.wid, sbc.hei);
+  }
+}
+
+function displayStartButtonText() {
+  for (let sbtc of startButtonTextCharacteristics) {
+    
+  }
 }
