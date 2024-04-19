@@ -34,7 +34,9 @@ function draw() {
     background(0, 48, 73);
     titleText();
     startButton();
-    mousePressed();
+    displayStartButton();
+    startButtonText();
+    displayStartButtonText();
   }
   else if (state === "periodic table") {
     background(220);
@@ -99,11 +101,7 @@ function titleText() {
   textFont("Trebuchet MS");
   fill(253, 240, 213);
   textSize(40);
-  text("EPIC Periodic Table: Transition Metals!", width/2, height/2);
-}
-
-function mousePressed() {
-  
+  text("Periodic Table: Transition Metals!", width/2, height/2);
 }
 
 function startButton() {
@@ -115,8 +113,14 @@ function startButton() {
     r: 255,
     g: 183,
     b: 3,
-    text("Let's Go!", width/2, height/1.55);
   }; 
+}
+
+function displayStartButton() {
+  rectMode(CENTER);
+  noStroke();
+  fill(startButtonCharacteristics.r, startButtonCharacteristics.g, startButtonCharacteristics.b);
+  rect(startButtonCharacteristics.x, startButtonCharacteristics.y, startButtonCharacteristics.wid, startButtonCharacteristics.hei);
 }
 
 function startButtonText() {
@@ -124,22 +128,16 @@ function startButtonText() {
     r2: 253,
     g2: 183,
     b2: 3,
-    wid2: width/2,
-    hei2: height/1.55,
+    x2: width/2,
+    y2: height/1.55,
   };
 }
 
-function displayStartButton() {
-  for (let sbc of startButtonCharacteristics) {
-    rectMode(CENTER);
-    noStroke();
-    fill(sbc.r, sbc.g, sbc.b);
-    rect(sbc.x, sbc.y, sbc.wid, sbc.hei);
-  }
+function displayStartButtonText() {
+  fill(startButtonTextCharacteristics.r2, startButtonTextCharacteristics.g2, startButtonTextCharacteristics.b2);
+  text("Let's Go!", startButtonTextCharacteristics.x2, startButtonTextCharacteristics.y2);
 }
 
-function displayStartButtonText() {
-  for (let sbtc of startButtonTextCharacteristics) {
-    
-  }
+function mousePressed() {
+  
 }
