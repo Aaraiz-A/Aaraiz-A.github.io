@@ -34,6 +34,7 @@ function draw() {
     background(0, 48, 73);
     titleText();
     startButton();
+    changeColorOfStartButton();
     displayStartButton();
     startButtonText();
     displayStartButtonText();
@@ -106,8 +107,8 @@ function titleText() {
 
 function startButton() {
   startButtonCharacteristics = {
-    x: width/2,
-    y: height/1.6,
+    x2: width/2,
+    y2: height/1.6,
     wid: 250,
     hei: 60,
     r: 255,
@@ -118,26 +119,38 @@ function startButton() {
 
 function displayStartButton() {
   rectMode(CENTER);
-  noStroke();
+  strokeWeight(4);
   fill(startButtonCharacteristics.r, startButtonCharacteristics.g, startButtonCharacteristics.b);
-  rect(startButtonCharacteristics.x, startButtonCharacteristics.y, startButtonCharacteristics.wid, startButtonCharacteristics.hei);
+  rect(startButtonCharacteristics.x2, startButtonCharacteristics.y2, startButtonCharacteristics.wid, startButtonCharacteristics.hei);
 }
 
 function startButtonText() {
   startButtonTextCharacteristics = {
-    r2: 253,
-    g2: 183,
+    x3: width/2,
+    y3: height/1.55,
+    r2: 2,
+    g2: 1,
     b2: 3,
-    x2: width/2,
-    y2: height/1.55,
   };
 }
 
 function displayStartButtonText() {
+  textAlign(CENTER);
+  textFont("Trebuchet MS");
   fill(startButtonTextCharacteristics.r2, startButtonTextCharacteristics.g2, startButtonTextCharacteristics.b2);
-  text("Let's Go!", startButtonTextCharacteristics.x2, startButtonTextCharacteristics.y2);
+  text("Let's Go!", startButtonTextCharacteristics.x3, startButtonTextCharacteristics.y3);
 }
 
 function mousePressed() {
-  
+  if (mouseX < startButtonCharacteristics.x2 + 125 && mouseX > startButtonCharacteristics.x2 - 125 && (mouseY > startButtonCharacteristics.y2 - 30 && mouseY < startButtonCharacteristics.y2 + 30)) {
+    state = "periodic table";
+  }
+}
+
+function changeColorOfStartButton() {
+  if (mouseX < startButtonCharacteristics.x2 + 125 && mouseX > startButtonCharacteristics.x2 - 125 && (mouseY > startButtonCharacteristics.y2 - 30 && mouseY < startButtonCharacteristics.y2 + 30)) {
+    startButtonCharacteristics.r = 255;
+    startButtonCharacteristics.g = 255;
+    startButtonCharacteristics.b = 255;
+  }
 }
