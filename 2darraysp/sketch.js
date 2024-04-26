@@ -20,10 +20,7 @@ function setup() {
   else {
     createCanvas(windowHeight, windowHeight);
   }
-
-  grid = generateRandomGrid(prows, pcols);
-    
-
+  grid = generateEmptyGrid(prows, pcols);
   cellSize = height/grid.length;
 }
 
@@ -43,26 +40,33 @@ function draw() {
   }
 }
 
-// MAKING THE GRID 48-81
+// MAKING THE GRID 46-87
 function displayGrid() {
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
+      if (grid[y][x] === 1) {
+        fill("black");
+      }
+      else {
+        fill("white");
+      }
       square(x * cellSize, y * cellSize, cellSize);
+      textSize(10);
+      fill("black");
+      text("element",x *cellSize, y * cellSize);
     }
   }
 }
 
-function generateRandomGrid(cols, rows) {
+// prows = 4
+// pcols = 9
+
+function generateEmptyGrid(pcols, prows) {
   let emptyArray = [];
-  for (let y = 0; y < rows; y++) {
+  for (let y = 0; y < prows; y++) {
     emptyArray.push([]);
-    for (let x = 0; x < cols; x++) {
-      if (random(100) < 50) {
-        emptyArray[y].push(0);
-      }
-      else {
-        emptyArray[y].push(1);
-      }
+    for (let x = 0; x < pcols; x++) {
+      emptyArray[y].push(0);
     }
   }
   return emptyArray;
