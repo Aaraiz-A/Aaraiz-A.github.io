@@ -3,7 +3,7 @@
 
 //Extra for experts:
 
-// Used functions that were not discussed in class: shuffle(), min(), max(), color(), 
+// Used functions that were not discussed in class: shuffle(), min(), max(), color(), object
 //(idk if this is extra for experts, but I used math.floor which I had to learn how to use)
 // also this took me quite a while watching tutorials to see how everything actually worked (not an extra for experts, but i tried my best)
 
@@ -221,7 +221,8 @@ function checkIfItIsHoveringStart() {
     mouseY < startButtonCharacteristics.y + startButtonCharacteristics.height / 2
   ) {
     startButtonCharacteristics.color = color(255);
-  } else {
+  } 
+  else {
     startButtonCharacteristics.color = color(255, 183, 3);
   }
 }
@@ -266,7 +267,8 @@ function checkIfItIsHoveringBack() {
     mouseY < backButtonCharacteristics.y + backButtonCharacteristics.height / 2
   ) {
     backButtonCharacteristics.color = color(255);
-  } else {
+  } 
+  else {
     backButtonCharacteristics.color = color(200);
   }
 }
