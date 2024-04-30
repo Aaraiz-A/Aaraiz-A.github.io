@@ -9,6 +9,7 @@
 - [Generative Terrain](terrain)
 - [Bubble Movement](bubble)
 - [2D Grid](grid)
+- [Walkter OOP](walker)
 
 # Projects
 - [Interactive Scene](scene)
