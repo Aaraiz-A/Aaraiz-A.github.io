@@ -8,21 +8,21 @@
 // also this took me quite a while watching tutorials to see how everything actually worked (not an extra for experts, but i tried my best)
 
 // random thoughts:
-// This was my first time not making a game, and I thought I would enjoy it, but it ended up being boring and a chore trying to figure out the math and
-// making sure everything was perfect.
+// This was my first time not making a game, and I thought I would enjoy it, but it ended up being boring and a chore trying to figure out the math and making sure everything was perfect.
+// Would i do it again? nope
 
 let grid;
 let cellSize;
 const GRID_SIZE = 10;
-const pcols = 7;
-const prows = 6;
+const pcols = 8;
+const prows = 8;
 let startButtonCharacteristics;
 let startButtonTextCharacteristics;
 let backButtonCharacteristics;
 let state = "title screen";
 let clickedElement = {}; // this starts clickedelement with an empty object
 
-// Define transition metals
+// Define transition metals (so tedious)
 const transitionMetals = [
   { symbol: "Sc", name: "Scandium", atomicNumber: 21, atomicMass: 44.96 },
   { symbol: "Ti", name: "Titanium", atomicNumber: 22, atomicMass: 47.87 },
@@ -89,6 +89,7 @@ function draw() {
     background(0, 48, 73);
     titleText();
     startButton();
+    checkIfItIsHoveringStart();
     displayStartButton();
     startButtonText();
     displayStartButtonText();
@@ -101,6 +102,7 @@ function draw() {
     background(0, 48, 73);
     displayElementDetails(clickedElement);
     backButton();
+    checkIfItIsHoveringBack();
     displayBackButton();
   }
 }
@@ -182,7 +184,7 @@ function startButton() {
     y: height / 1.6,
     width: 250,
     height: 60,
-    color: color(255, 183, 3)
+    color: color(255, 183, 3),
   };
 }
 
@@ -198,7 +200,7 @@ function startButtonText() {
   startButtonTextCharacteristics = {
     x: width / 2,
     y: height / 1.57,
-    size: 37,
+    size: 40,
     color: color(2, 1, 3)
   };
 }
@@ -211,6 +213,19 @@ function displayStartButtonText() {
   text("Let's Go!", startButtonTextCharacteristics.x, startButtonTextCharacteristics.y);
 }
 
+//check if the mouse is hovering over the start button and if it is then change the colour of it
+function checkIfItIsHoveringStart() {
+  if (mouseX > startButtonCharacteristics.x - startButtonCharacteristics.width / 2 &&
+    mouseX < startButtonCharacteristics.x + startButtonCharacteristics.width / 2 &&
+    mouseY > startButtonCharacteristics.y - startButtonCharacteristics.height / 2 &&
+    mouseY < startButtonCharacteristics.y + startButtonCharacteristics.height / 2
+  ) {
+    startButtonCharacteristics.color = color(255);
+  } else {
+    startButtonCharacteristics.color = color(255, 183, 3);
+  }
+}
+
 // what are the back button characteristics?
 function backButton() {
   backButtonCharacteristics = {
@@ -221,14 +236,6 @@ function backButton() {
     color: color(200),
     label: "Back"
   };
-}
-
-function CheckIfItIsHovering() {
-    if (mouseX > startButtonCharacteristics.x - startButtonCharacteristics.width / 2 &&
-    mouseX < startButtonCharacteristics.x + startButtonCharacteristics.width / 2 &&
-    mouseY > startButtonCharacteristics.y - startButtonCharacteristics.height / 2 &&
-    mouseY < startButtonCharacteristics.y + startButtonCharacteristics.height / 2) {
-        
 }
 
 // displays the text of the title
@@ -251,6 +258,19 @@ function displayBackButton() {
   text(backButtonCharacteristics.label, backButtonCharacteristics.x, backButtonCharacteristics.y);
 }
 
+//check if the mouse is hovering over the back button and if it is then change the colour of it
+function checkIfItIsHoveringBack() {
+  if (mouseX > backButtonCharacteristics.x - backButtonCharacteristics.width / 2 &&
+    mouseX < backButtonCharacteristics.x + backButtonCharacteristics.width / 2 &&
+    mouseY > backButtonCharacteristics.y - backButtonCharacteristics.height / 2 &&
+    mouseY < backButtonCharacteristics.y + backButtonCharacteristics.height / 2
+  ) {
+    backButtonCharacteristics.color = color(255);
+  } else {
+    backButtonCharacteristics.color = color(200);
+  }
+}
+
 // generates the grid the periodic table will take place
 function generateEmptyGrid(pcols, prows) {
   let emptyArray = [];
@@ -262,3 +282,4 @@ function generateEmptyGrid(pcols, prows) {
   }
   return emptyArray;
 }
+
