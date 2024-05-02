@@ -10,6 +10,8 @@
 - [Bubble Movement](bubble)
 - [2D Grid](grid)
 - [Walkter OOP](walker)
+- [Walker OOP with Arrays](14-walker-with-arrays)
+- [fireworks](fireworks)
 
 # Projects
 - [Interactive Scene](scene)
