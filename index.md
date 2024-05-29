@@ -13,6 +13,8 @@
 - [Walker OOP with Arrays](14-walker-with-arrays)
 - [fireworks](fireworks)
 - [Connected Nodes OOP](nodes)
+- [Recursive Circles](19-recursive-circles)
+- [Sierpinksi Triangle](sierpinksi-triangle)
 
 # Projects
 - [Interactive Scene](scene)
